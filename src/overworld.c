@@ -72,8 +72,7 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
-
-STATIC_ASSERT((B_FLAG_FOLLOWERS_DISABLED == 0 || OW_FOLLOWERS_ENABLED), FollowersFlagAssignedWithoutEnablingThem);
+#include "constants/event_objects.h"
 
 struct CableClubPlayer
 {
@@ -1395,7 +1394,7 @@ static void ChooseAmbientCrySpecies(void)
         // Only play water Pokémon cries on this route
         // when Mirage Island is not present
         sIsAmbientCryWaterMon = TRUE;
-        sAmbientCrySpecies = GetLocalWaterMon();
+        sAmbientCrySpecies = GetLocalWaterMon().species;
     }
     else
     {
@@ -3308,211 +3307,256 @@ static void SpriteCB_LinkPlayer(struct Sprite *sprite)
     }
 }
 
-// ----------------
-// Item Header Descriptions
-// Item Description Header
-
-#define ITEM_ICON_X     26
-#define ITEM_ICON_Y     24
-#define ITEM_TAG        0x2722 //same as money label
-
-bool8 GetSetItemObtained(u16 item, enum ItemObtainFlags caseId)
+void GetOverworldMonSpecies(void)
 {
-#if OW_SHOW_ITEM_DESCRIPTIONS == OW_ITEM_DESCRIPTIONS_FIRST_TIME
-    u8 index = item / 8;
-    u8 bit = item % 8;
-    u8 mask = 1 << bit;
-    switch (caseId)
+    gSpecialVar_0x8005 = gObjectEvents[gSelectedObjectEvent].shiny;
+
+    switch (gObjectEvents[gSelectedObjectEvent].graphicsId)
     {
-    case FLAG_GET_ITEM_OBTAINED:
-        return gSaveBlock3Ptr->itemFlags[index] & mask;
-    case FLAG_SET_ITEM_OBTAINED:
-        gSaveBlock3Ptr->itemFlags[index] |= mask;
-        return TRUE;
-    }
-#endif
-    return FALSE;
-}
+    case OBJ_EVENT_GFX_RAYQUAZA_STILL:
+    case OBJ_EVENT_GFX_RAYQUAZA:
+        gSpecialVar_0x8004 = SPECIES_RAYQUAZA;
+        break;
 
-#if OW_SHOW_ITEM_DESCRIPTIONS != OW_ITEM_DESCRIPTIONS_OFF
+    case OBJ_EVENT_GFX_UNUSED_NATU_DOLL:
+        gSpecialVar_0x8004 = SPECIES_NATU;
+        break;
 
-EWRAM_DATA static u8 sHeaderBoxWindowId = 0;
-EWRAM_DATA u8 sItemIconSpriteId = 0;
-EWRAM_DATA u8 sItemIconSpriteId2 = 0;
+    case OBJ_EVENT_GFX_UNUSED_SQUIRTLE_DOLL:
+        gSpecialVar_0x8004 = SPECIES_SQUIRTLE;
+        break;
 
-static void ShowItemIconSprite(u16 item, bool8 firstTime, bool8 flash);
-static void DestroyItemIconSprite(void);
+    case OBJ_EVENT_GFX_UNUSED_WOOPER_DOLL:
+        gSpecialVar_0x8004 = SPECIES_WOOPER;
+        break;
 
-static u8 ReformatItemDescription(u16 item, u8 *dest)
-{
-    u8 count = 0;
-    u8 numLines = 1;
-    u8 maxChars = 32;
-    u8 *desc = (u8 *)ItemId_GetDescription(item);
+    case OBJ_EVENT_GFX_UNUSED_PIKACHU_DOLL:
+    case OBJ_EVENT_GFX_PIKACHU_DOLL:
+    case OBJ_EVENT_GFX_PIKACHU:
+        gSpecialVar_0x8004 = SPECIES_PIKACHU;
+        break;
 
-    while (*desc != EOS)
-    {
-        if (count >= maxChars)
-        {
-            while (*desc != CHAR_SPACE && *desc != CHAR_NEWLINE)
-            {
-                *dest = *desc;  //finish word
-                dest++;
-                desc++;
-            }
+    case OBJ_EVENT_GFX_UNUSED_PORYGON2_DOLL:
+        gSpecialVar_0x8004 = SPECIES_PORYGON2;
+        break;
 
-            *dest = CHAR_NEWLINE;
-            count = 0;
-            numLines++;
-            dest++;
-            desc++;
-            continue;
-        }
+    case OBJ_EVENT_GFX_VIGOROTH_CARRYING_BOX:
+    case OBJ_EVENT_GFX_VIGOROTH_FACING_AWAY:
+        gSpecialVar_0x8004 = SPECIES_VIGOROTH;
+        break;
 
-        *dest = *desc;
-        if (*desc == CHAR_NEWLINE)
-        {
-            *dest = CHAR_SPACE;
-        }
+    case OBJ_EVENT_GFX_ZIGZAGOON_1:
+    case OBJ_EVENT_GFX_ZIGZAGOON_2:
+        gSpecialVar_0x8004 = SPECIES_ZIGZAGOON;
+        break;
 
-        dest++;
-        desc++;
-        count++;
-    }
+    case OBJ_EVENT_GFX_PICHU_DOLL:
+        gSpecialVar_0x8004 = SPECIES_PICHU;
+        break;
 
-    // finish string
-    *dest = EOS;
-    return numLines;
-}
+    case OBJ_EVENT_GFX_MARILL_DOLL:
+        gSpecialVar_0x8004 = SPECIES_MARILL;
+        break;
 
-void ScriptShowItemDescription(struct ScriptContext *ctx)
-{
-    u8 headerType = ScriptReadByte(ctx);
+    case OBJ_EVENT_GFX_TOGEPI_DOLL:
+        gSpecialVar_0x8004 = SPECIES_TOGEPI;
+        break;
 
-    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
+    case OBJ_EVENT_GFX_CYNDAQUIL_DOLL:
+        gSpecialVar_0x8004 = SPECIES_CYNDAQUIL;
+        break;
 
-    struct WindowTemplate template;
-    u16 item = gSpecialVar_0x8006;
-    u8 textY;
-    u8 *dst;
-    bool8 handleFlash = FALSE;
+    case OBJ_EVENT_GFX_CHIKORITA_DOLL:
+        gSpecialVar_0x8004 = SPECIES_CHIKORITA;
+        break;
 
-    if (GetFlashLevel() > 0 || InBattlePyramid_())
-        handleFlash = TRUE;
+    case OBJ_EVENT_GFX_TOTODILE_DOLL:
+        gSpecialVar_0x8004 = SPECIES_TOTODILE;
+        break;
 
-    if (headerType == 1) // berry
-        dst = gStringVar3;
-    else
-        dst = gStringVar1;
+    case OBJ_EVENT_GFX_JIGGLYPUFF_DOLL:
+        gSpecialVar_0x8004 = SPECIES_JIGGLYPUFF;
+        break;
 
-    if (GetSetItemObtained(item, FLAG_GET_ITEM_OBTAINED))
-    {
-        ShowItemIconSprite(item, FALSE, handleFlash);
-        return; //no box if item obtained previously
-    }
+    case OBJ_EVENT_GFX_MEOWTH_DOLL:
+        gSpecialVar_0x8004 = SPECIES_MEOWTH;
+        break;
 
-    SetWindowTemplateFields(&template, 0, 1, 1, 28, 3, 15, 8);
-    sHeaderBoxWindowId = AddWindow(&template);
-    FillWindowPixelBuffer(sHeaderBoxWindowId, PIXEL_FILL(0));
-    PutWindowTilemap(sHeaderBoxWindowId);
-    CopyWindowToVram(sHeaderBoxWindowId, 3);
-    SetStandardWindowBorderStyle(sHeaderBoxWindowId, FALSE);
-    DrawStdFrameWithCustomTileAndPalette(sHeaderBoxWindowId, FALSE, 0x214, 14);
+    case OBJ_EVENT_GFX_CLEFAIRY_DOLL:
+        gSpecialVar_0x8004 = SPECIES_CLEFAIRY;
+        break;
 
-    if (ReformatItemDescription(item, dst) == 1)
-        textY = 4;
-    else
-        textY = 0;
+    case OBJ_EVENT_GFX_DITTO_DOLL:
+        gSpecialVar_0x8004 = SPECIES_DITTO;
+        break;
 
-    ShowItemIconSprite(item, TRUE, handleFlash);
-    AddTextPrinterParameterized(sHeaderBoxWindowId, 0, dst, ITEM_ICON_X + 2, textY, 0, NULL);
-}
+    case OBJ_EVENT_GFX_SMOOCHUM_DOLL:
+        gSpecialVar_0x8004 = SPECIES_SMOOCHUM;
+        break;
 
-void ScriptHideItemDescription(struct ScriptContext *ctx)
-{
-    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE | SCREFF_HARDWARE);
+    case OBJ_EVENT_GFX_TREECKO_DOLL:
+        gSpecialVar_0x8004 = SPECIES_TREECKO;
+        break;
 
-    DestroyItemIconSprite();
+    case OBJ_EVENT_GFX_TORCHIC_DOLL:
+        gSpecialVar_0x8004 = SPECIES_TORCHIC;
+        break;
 
-    if (!GetSetItemObtained(gSpecialVar_0x8006, FLAG_GET_ITEM_OBTAINED))
-    {
-        //header box only exists if haven't seen item before
-        GetSetItemObtained(gSpecialVar_0x8006, FLAG_SET_ITEM_OBTAINED);
-        ClearStdWindowAndFrameToTransparent(sHeaderBoxWindowId, FALSE);
-        CopyWindowToVram(sHeaderBoxWindowId, 3);
-        RemoveWindow(sHeaderBoxWindowId);
-    }
-}
+    case OBJ_EVENT_GFX_MUDKIP_DOLL:
+        gSpecialVar_0x8004 = SPECIES_MUDKIP;
+        break;
 
-static void ShowItemIconSprite(u16 item, bool8 firstTime, bool8 flash)
-{
-    s16 x = 0, y = 0;
-    u8 iconSpriteId;
-    u8 spriteId2 = MAX_SPRITES;
+    case OBJ_EVENT_GFX_DUSKULL_DOLL:
+        gSpecialVar_0x8004 = SPECIES_DUSKULL;
+        break;
 
-    if (flash)
-    {
-        SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_OBJWIN_ON);
-        SetGpuRegBits(REG_OFFSET_WINOUT, WINOUT_WINOBJ_OBJ);
-    }
+    case OBJ_EVENT_GFX_WYNAUT_DOLL:
+        gSpecialVar_0x8004 = SPECIES_WYNAUT;
+        break;
 
-    iconSpriteId = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
-    if (flash)
-        spriteId2 = AddItemIconSprite(ITEM_TAG, ITEM_TAG, item);
-    if (iconSpriteId != MAX_SPRITES)
-    {
-        if (!firstTime)
-        {
-            //show in message box
-            x = 213;
-            y = 140;
-        }
+    case OBJ_EVENT_GFX_BALTOY_DOLL:
+        gSpecialVar_0x8004 = SPECIES_BALTOY;
+        break;
+
+    case OBJ_EVENT_GFX_KECLEON_DOLL:
+    case OBJ_EVENT_GFX_KECLEON:
+    case OBJ_EVENT_GFX_KECLEON_BRIDGE_SHADOW:
+        gSpecialVar_0x8004 = SPECIES_KECLEON;
+        break;
+
+    case OBJ_EVENT_GFX_AZURILL_DOLL:
+        gSpecialVar_0x8004 = SPECIES_AZURILL;
+        break;
+
+    case OBJ_EVENT_GFX_SKITTY_DOLL:
+    case OBJ_EVENT_GFX_SKITTY:
+        gSpecialVar_0x8004 = SPECIES_SKITTY;
+        break;
+
+    case OBJ_EVENT_GFX_SWABLU_DOLL:
+        gSpecialVar_0x8004 = SPECIES_SWABLU;
+        break;
+
+    case OBJ_EVENT_GFX_GULPIN_DOLL:
+        gSpecialVar_0x8004 = SPECIES_GULPIN;
+        break;
+
+    case OBJ_EVENT_GFX_LOTAD_DOLL:
+        gSpecialVar_0x8004 = SPECIES_LOTAD;
+        break;
+
+    case OBJ_EVENT_GFX_SEEDOT_DOLL:
+        gSpecialVar_0x8004 = SPECIES_SEEDOT;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_SNORLAX_DOLL:
+        gSpecialVar_0x8004 = SPECIES_SNORLAX;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_RHYDON_DOLL:
+        gSpecialVar_0x8004 = SPECIES_RHYDON;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_LAPRAS_DOLL:
+        gSpecialVar_0x8004 = SPECIES_LAPRAS;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_VENUSAUR_DOLL:
+        gSpecialVar_0x8004 = SPECIES_VENUSAUR;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_CHARIZARD_DOLL:
+        gSpecialVar_0x8004 = SPECIES_CHARIZARD;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_BLASTOISE_DOLL:
+        gSpecialVar_0x8004 = SPECIES_BLASTOISE;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_WAILMER_DOLL:
+        gSpecialVar_0x8004 = SPECIES_WAILMER;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_REGIROCK_DOLL:
+    case OBJ_EVENT_GFX_REGIROCK:
+        gSpecialVar_0x8004 = SPECIES_REGIROCK;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_REGICE_DOLL:
+    case OBJ_EVENT_GFX_REGICE:
+        gSpecialVar_0x8004 = SPECIES_REGICE;
+        break;
+
+    case OBJ_EVENT_GFX_BIG_REGISTEEL_DOLL:
+    case OBJ_EVENT_GFX_REGISTEEL:
+        gSpecialVar_0x8004 = SPECIES_REGISTEEL;
+        break;
+
+    case OBJ_EVENT_GFX_LATIAS:
+        gSpecialVar_0x8004 = SPECIES_LATIAS;
+        break;
+
+    case OBJ_EVENT_GFX_LATIOS:
+        gSpecialVar_0x8004 = SPECIES_LATIOS;
+        break;
+
+    case OBJ_EVENT_GFX_KYOGRE_FRONT:
+    case OBJ_EVENT_GFX_KYOGRE_ASLEEP:
+    case OBJ_EVENT_GFX_KYOGRE_SIDE:
+        gSpecialVar_0x8004 = SPECIES_KYOGRE;
+        break;
+
+    case OBJ_EVENT_GFX_GROUDON_FRONT:
+    case OBJ_EVENT_GFX_GROUDON_ASLEEP:
+    case OBJ_EVENT_GFX_GROUDON_SIDE:
+        gSpecialVar_0x8004 = SPECIES_GROUDON;
+        break;
+
+    case OBJ_EVENT_GFX_AZUMARILL:
+        gSpecialVar_0x8004 = SPECIES_AZUMARILL;
+        break;
+
+    case OBJ_EVENT_GFX_WINGULL:
+        gSpecialVar_0x8004 = SPECIES_WINGULL;
+        break;
+
+    case OBJ_EVENT_GFX_POOCHYENA:
+        gSpecialVar_0x8004 = SPECIES_POOCHYENA;
+        break;
+
+    case OBJ_EVENT_GFX_KIRLIA:
+        gSpecialVar_0x8004 = SPECIES_KIRLIA;
+        break;
+
+    case OBJ_EVENT_GFX_DUSCLOPS:
+        gSpecialVar_0x8004 = SPECIES_DUSCLOPS;
+        break;
+
+    case OBJ_EVENT_GFX_SUDOWOODO:
+        gSpecialVar_0x8004 = SPECIES_SUDOWOODO;
+        break;
+
+    case OBJ_EVENT_GFX_MEW:
+        gSpecialVar_0x8004 = SPECIES_MEW;
+        break;
+
+    case OBJ_EVENT_GFX_DEOXYS:
+        gSpecialVar_0x8004 = SPECIES_DEOXYS;
+        break;
+
+    case OBJ_EVENT_GFX_LUGIA:
+        gSpecialVar_0x8004 = SPECIES_LUGIA;
+        break;
+
+    case OBJ_EVENT_GFX_HOOH:
+        gSpecialVar_0x8004 = SPECIES_HO_OH;
+        break;
+    
+    default:
+        if (gObjectEvents[gSelectedObjectEvent].graphicsId > OBJ_EVENT_GFX_SPECIES(NONE) && gObjectEvents[gSelectedObjectEvent].graphicsId < OBJ_EVENT_GFX_SPECIES(EGG))
+            gSpecialVar_0x8004 = gObjectEvents[gSelectedObjectEvent].graphicsId - OBJ_EVENT_GFX_SPECIES(NONE);    
         else
-        {
-            // show in header box
-            x = ITEM_ICON_X;
-            y = ITEM_ICON_Y;
-        }
-
-        gSprites[iconSpriteId].x2 = x;
-        gSprites[iconSpriteId].y2 = y;
-        gSprites[iconSpriteId].oam.priority = 0;
-    }
-
-    if (spriteId2 != MAX_SPRITES)
-    {
-        gSprites[spriteId2].x2 = x;
-        gSprites[spriteId2].y2 = y;
-        gSprites[spriteId2].oam.priority = 0;
-        gSprites[spriteId2].oam.objMode = ST_OAM_OBJ_WINDOW;
-        sItemIconSpriteId2 = spriteId2;
-    }
-
-    sItemIconSpriteId = iconSpriteId;
-}
-
-static void DestroyItemIconSprite(void)
-{
-    FreeSpriteTilesByTag(ITEM_TAG);
-    FreeSpritePaletteByTag(ITEM_TAG);
-    FreeSpriteOamMatrix(&gSprites[sItemIconSpriteId]);
-    DestroySprite(&gSprites[sItemIconSpriteId]);
-
-    if ((GetFlashLevel() > 0 || InBattlePyramid_()) && sItemIconSpriteId2 != MAX_SPRITES)
-    {
-        FreeSpriteOamMatrix(&gSprites[sItemIconSpriteId2]);
-        DestroySprite(&gSprites[sItemIconSpriteId2]);
+            gSpecialVar_0x8004 = SPECIES_NONE;
+        break;
     }
 }
-
-#else
-void ScriptShowItemDescription(struct ScriptContext *ctx)
-{
-    (void) ScriptReadByte(ctx);
-}
-void ScriptHideItemDescription(struct ScriptContext *ctx)
-{
-}
-#endif // OW_SHOW_ITEM_DESCRIPTIONS
-
-
