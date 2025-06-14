@@ -1060,3 +1060,5 @@ LittlerootTown_Text_Wingull_Boy:
     .string "Just be careful when you approach\n"
     .string "one, some don't like people near\n"
     .string "their nests!$"
+
+

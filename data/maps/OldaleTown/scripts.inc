@@ -12,6 +12,7 @@ OldaleTown_OnTransition:
 	call_if_unset FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_BlockWestEntrance
 	call_if_unset FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_MoveMartEmployee
 	call_if_set FLAG_ADVENTURE_STARTED, OldaleTown_EventScript_SetOldaleState
+	setobjectaswildencounter LOCALID_OW_MON, ENCOUNTER_GOOD_ROD
 	end
 
 @ This script seems pointless because nothing uses VAR_OLDALE_TOWN_STATE
@@ -417,6 +418,15 @@ DaycareTown_Text_PokemonDaycareInfo:
     .string "zooming up and down the roads \l"
     .string "horizontally and vertically.$"
 
+OldaleTown_test_EventScript_OverworldMon::
+    lock
+    callnative GetOverworldMonSpecies
+    bufferspeciesname STR_VAR_1, VAR_0x8004
+    msgbox PetalburgCity_Text_OverworldMon, MSGBOX_DEFAULT
+    closemessage
+    startoverworldencounter 5
+    release
+    end
 
 
 
