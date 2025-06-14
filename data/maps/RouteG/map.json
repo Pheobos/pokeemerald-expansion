@@ -1,0 +1,49 @@
+{
+  "id": "MAP_ROUTE_G",
+  "name": "RouteG",
+  "layout": "LAYOUT_ROUTE_G",
+  "music": "MUS_DUMMY",
+  "region_map_section": "MAPSEC_ROUTEG",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE_E",
+      "offset": -35,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE_F",
+      "offset": 0,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_SPIKEBLUFF",
+      "offset": 33,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_EPINEIO_VINEYARDS",
+      "offset": -44,
+      "direction": "right"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

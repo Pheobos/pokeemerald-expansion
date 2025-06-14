@@ -825,3 +825,69 @@ const struct Tileset gTileset_UnionRoom =
     .metatileAttributes = gMetatileAttributes_UnionRoom,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Creta_Primary_Tiles =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Creta_Primary_Tiles,
+    .palettes = gTilesetPalettes_Creta_Primary_Tiles,
+    .metatiles = gMetatiles_Creta_Primary_Tiles,
+    .metatileAttributes = gMetatileAttributes_Creta_Primary_Tiles,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_TEST_CUSTOM_STARTINGTOWN =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_TEST_CUSTOM_STARTINGTOWN,
+    .palettes = gTilesetPalettes_TEST_CUSTOM_STARTINGTOWN,
+    .metatiles = gMetatiles_TEST_CUSTOM_STARTINGTOWN,
+    .metatileAttributes = gMetatileAttributes_TEST_CUSTOM_STARTINGTOWN,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_Edited_Tileset_Test =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_Edited_Tileset_Test,
+    .palettes = gTilesetPalettes_Edited_Tileset_Test,
+    .metatiles = gMetatiles_Edited_Tileset_Test,
+    .metatileAttributes = gMetatileAttributes_Edited_Tileset_Test,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_EDITED_PETALBURG_TEST =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_EDITED_PETALBURG_TEST,
+    .palettes = gTilesetPalettes_EDITED_PETALBURG_TEST,
+    .metatiles = gMetatiles_EDITED_PETALBURG_TEST,
+    .metatileAttributes = gMetatileAttributes_EDITED_PETALBURG_TEST,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_PorytilesPracticeTileset =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_PorytilesPracticeTileset,
+    .palettes = gTilesetPalettes_PorytilesPracticeTileset,
+    .metatiles = gMetatiles_PorytilesPracticeTileset,
+    .metatileAttributes = gMetatileAttributes_PorytilesPracticeTileset,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_NEW_Creta_Tileset =
+{
+    .isCompressed = TRUE,
+    .isSecondary = FALSE,
+    .tiles = gTilesetTiles_NEW_Creta_Tileset,
+    .palettes = gTilesetPalettes_NEW_Creta_Tileset,
+    .metatiles = gMetatiles_NEW_Creta_Tileset,
+    .metatileAttributes = gMetatileAttributes_NEW_Creta_Tileset,
+    .callback = NULL,
+};

@@ -1019,3 +1019,44 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+LittlerootTown_EventScript_Static_WINGULL1::
+	lock
+	faceplayer
+	setwildbattle SPECIES_WINGULL, 2
+	waitse
+	playmoncry SPECIES_WINGULL, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	release
+	end
+
+LittlerootTown_Eventscript_Harmless_WINGULL::
+	lock
+	faceplayer
+	playmoncry SPECIES_WINGULL, 0
+	msgbox Text_Harmless_Wingull, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
+
+Text_Harmless_Wingull:
+	.string "Wingull: WIIIN-GULL!$"
+
+LittlerootTown_Wingull_Boy_EventScript::
+	lock
+	faceplayer
+	msgbox LittlerootTown_Text_Wingull_Boy, MSGBOX_DEFAULT
+	release
+	end
+
+LittlerootTown_Text_Wingull_Boy:
+    .string "Thanks to our island being sea-locked,\n"
+    .string "it's pretty common to see Wingull.\n"
+    .string "Many of them build nests here.\p"
+    .string "Just be careful when you approach\n"
+    .string "one, some don't like people near\n"
+    .string "their nests!$"

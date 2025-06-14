@@ -397,5 +397,26 @@ OldaleTown_Text_BrendanLetsGoBack:
 
 OldaleTown_Text_TownSign:
 	.string "OLDALE TOWN\n"
-	.string "“Where things start off scarce.”$"
+	.string "“Where new beginnings are celebrated!.”$"
+
+DaycareTown_NPC_EventScript_PokemonDaycareInfo::
+    lock
+    faceplayer
+    msgbox DaycareTown_Text_PokemonDaycareInfo, MSGBOX_DEFAULT
+    release
+    end
+
+DaycareTown_Text_PokemonDaycareInfo:
+    .string "I know there's a Pokémon Gym in\n"
+    .string "our small town, but our pride and\p"
+    .string "joy is really the Pokémon Daycare.\n"
+    .string "Trainers come from far and wide\p"
+    .string "to visit for the expertise the\n"
+    .string "Daycare couple has in breeding!\p"
+    .string "On a good day, you can see trainers\n"
+    .string "zooming up and down the roads \l"
+    .string "horizontally and vertically.$"
+
+
+
 

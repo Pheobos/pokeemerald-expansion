@@ -107,3 +107,21 @@ Route102_Text_RouteSignOldale:
 Route102_Text_RouteSignPetalburg:
 	.string "ROUTE 102\n"
 	.string "{LEFT_ARROW} PETALBURG CITY$"
+
+
+
+Route102_EventScript_Mimicball1::
+	lock
+	faceplayer
+	setwildbattle SPECIES_FOONGUS, 7
+	waitse
+	playmoncry SPECIES_FOONGUS, CRY_MODE_ENCOUNTER
+	delay 40
+	waitmoncry
+	setflag FLAG_SYS_CTRL_OBJ_DELETE
+	dowildbattle
+	clearflag FLAG_SYS_CTRL_OBJ_DELETE
+	specialvar VAR_RESULT, GetBattleOutcome
+	release
+	end
+

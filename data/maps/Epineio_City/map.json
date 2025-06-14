@@ -1,0 +1,50 @@
+{
+  "id": "MAP_EPINEIO_CITY",
+  "name": "Epineio_City",
+  "layout": "LAYOUT_EPINEIO_CITY",
+  "music": "MUS_LITTLEROOT",
+  "region_map_section": "MAPSEC_EPINEIO_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_EPINEIO_VINEYARDS",
+      "offset": 0,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_ROUTE_D",
+      "offset": -26,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_ROUTE_E",
+      "offset": 34,
+      "direction": "left"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+    {
+      "x": 38,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_DEV_SHORTCUT_HUB",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

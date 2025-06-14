@@ -376,6 +376,11 @@
 #define FLAG_MET_FRONTIER_BEAUTY_MOVE_TUTOR  0x15A
 #define FLAG_MET_FRONTIER_SWIMMER_MOVE_TUTOR 0x15B
 
+#define FLAG_RECEIVED_SNORLAX                0x160
+#define FLAG_RECEIVED_TOXEL_EGG              0x161
+#define FLAG_RECEIVED_MARSHTOMP              0x162
+#define FLAG_RECEIVED_AGGRON                 0x163
+
 // Flags for whether a rematchable trainer has been registered in the player's Match Call.
 // Most are used implicitly by adding their REMATCH_* id to TRAINER_REGISTERED_FLAGS_START.
 // Some Match Call entries (like those for gym leaders, Wally, and all non-trainer NPCs like Prof. Birch)

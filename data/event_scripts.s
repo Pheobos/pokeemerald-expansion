@@ -1154,3 +1154,51 @@ EventScript_VsSeekerChargingDone::
 	.include "data/text/save.inc"
 	.include "data/text/birch_speech.inc"
 	.include "data/scripts/dexnav.inc"
+
+	.include "data/maps/LittlerootTown_Newhouse1/scripts.inc"
+
+	.include "data/maps/LittlerootTown_Newhouse2/scripts.inc"
+
+	.include "data/maps/LittlerootTown_Newhouse3/scripts.inc"
+
+	.include "data/maps/Secrethideaway_Grass/scripts.inc"
+
+	.include "data/maps/Secrethideaway_Fire/scripts.inc"
+
+	.include "data/maps/Secrethideaway_Water/scripts.inc"
+
+	.include "data/maps/DEV_Shortcut_Hub/scripts.inc"
+
+	.include "data/maps/Littleroot_Outskirts/scripts.inc"
+
+	.include "data/maps/RouteA/scripts.inc"
+
+	.include "data/maps/Epineio_Vineyards/scripts.inc"
+
+	.include "data/maps/Epineio_City/scripts.inc"
+
+	.include "data/maps/RouteB/scripts.inc"
+
+	.include "data/maps/RouteC/scripts.inc"
+
+	.include "data/maps/RouteD/scripts.inc"
+
+	.include "data/maps/MemorialHills/scripts.inc"
+
+	.include "data/maps/Spikebluff/scripts.inc"
+
+	.include "data/maps/Crystaline_Coast/scripts.inc"
+
+	.include "data/maps/RouteE/scripts.inc"
+
+	.include "data/maps/Crystaline_Coastline/scripts.inc"
+
+	.include "data/maps/LabratoryFloor2/scripts.inc"
+
+	.include "data/maps/Crystaline_Coastline_Beachcavern/scripts.inc"
+
+	.include "data/maps/Pokelab_Players_Room/scripts.inc"
+
+	.include "data/maps/RouteF/scripts.inc"
+
+	.include "data/maps/RouteG/scripts.inc"

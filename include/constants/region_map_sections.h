@@ -215,6 +215,37 @@
 #define MAPSEC_NAVEL_ROCK                   0xD3
 #define MAPSEC_TRAINER_HILL                 0xD4
 #define MAPSEC_NONE                         0xD5
+#define MAPSEC_EPINEIO_CITY                 0xD6
+#define MAPSEC_ROUTEA                       0xD7
+#define MAPSEC_ROUTEB                       0xD8
+#define MAPSEC_ROUTEC                       0xD9
+#define MAPSEC_ROUTED                       0xE0
+#define MAPSEC_ROUTEE                       0xE1
+#define MAPSEC_ROUTEF                       0xE2
+#define MAPSEC_ROUTEG                       0xE3
+#define MAPSEC_ROUTEH                       0xE4
+#define MAPSEC_ROUTEI                       0xE5
+#define MAPSEC_ROUTEJ                       0xE6
+#define MAPSEC_ROUTEK                       0xE7
+#define MAPSEC_ROUTEL                       0xE8
+#define MAPSEC_ROUTEM                       0xE9
+#define MAPSEC_ROUTEN                       0xF0
+#define MAPSEC_ROUTEO                       0xF1
+#define MAPSEC_ROUTEP                       0xF2
+#define MAPSEC_ROUTER                       0xF3
+#define MAPSEC_ROUTES                       0xF4
+#define MAPSEC_ROUTET                       0xF5
+#define MAPSEC_ROUTEQ                       0xF6
+#define MAPSEC_ROUTEU                       0xF7
+#define MAPSEC_ROUTEV                       0xF8
+#define MAPSEC_ROUTEW                       0xF9
+#define MAPSEC_ROUTEX                       0xDA
+#define MAPSEC_ROUTEY                       0xDB
+#define MAPSEC_ROUTEZ                       0xDC
+#define MAPSEC_SPIKEBLUFF                   0xDD
+#define MAPSEC_CRYSTALINE_COAST             0xDE
+#define MAPSEC_DEV_SHORTCUT_HUB             0xDF
+
 
 #define METLOC_SPECIAL_EGG                  0xFD
 #define METLOC_IN_GAME_TRADE                0xFE

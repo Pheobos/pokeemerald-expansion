@@ -139,6 +139,10 @@
 #define METATILE_Contest_FloorShadow         0x261
 #define METATILE_Contest_WallShadow          0x221
 
+// gTileset_Creta_Primary_Tiles
+#define METATILE_Creta_Primary_Tiles_METATILE_General_CalmWater       0x170
+#define METATILE_Creta_Primary_Tiles_METATILE_General_RoughDeepWater  0x147
+
 // gTileset_Dewford
 #define METATILE_Dewford_Door              0x225
 #define METATILE_Dewford_Door_BattleTower  0x25D

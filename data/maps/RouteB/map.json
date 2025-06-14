@@ -1,0 +1,54 @@
+{
+  "id": "MAP_ROUTE_B",
+  "name": "RouteB",
+  "layout": "LAYOUT_ROUTE_B",
+  "music": "MUS_ROUTE104",
+  "region_map_section": "MAPSEC_ROUTEB",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_NONE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE_A",
+      "offset": -20,
+      "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE102",
+      "offset": 0,
+      "direction": "left"
+    },
+    {
+      "map": "MAP_ROUTE_C",
+      "offset": -103,
+      "direction": "right"
+    },
+    {
+      "map": "MAP_CRYSTALINE_COASTLINE",
+      "offset": -20,
+      "direction": "down"
+    },
+    {
+      "map": "MAP_SPIKEBLUFF",
+      "offset": 145,
+      "direction": "down"
+    }
+  ],
+  "object_events": [
+
+  ],
+  "warp_events": [
+
+  ],
+  "coord_events": [
+
+  ],
+  "bg_events": [
+
+  ]
+}

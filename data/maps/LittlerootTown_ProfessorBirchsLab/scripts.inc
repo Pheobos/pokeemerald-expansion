@@ -999,3 +999,102 @@ LittlerootTown_ProfessorBirchsLab_Text_ScottAboardSSTidalCall:
 	.string "we meet. I'll be waiting!\p"
 	.string "… … … … … …\n"
 	.string "… … … … … Click!$"
+
+
+Im_Pheobos_Let_me_HelpScript::
+    lock
+    faceplayer
+    msgbox Text_TopicIntro, MSGBOX_DEFAULT
+    dynmultichoice 0, 0, TRUE, 7, 0, 0, Text_WhereAmI, Text_RegionGeography, Text_PokemonInfo, Text_FakemonInfo, Text_GimmicksInfo, Text_Difficulty, Text_ExitDialogue 
+    goto_if_eq VAR_RESULT, 0, WhereAmI
+    goto_if_eq VAR_RESULT, 1, RegionGeography
+    goto_if_eq VAR_RESULT, 2, PokemonInfo
+    goto_if_eq VAR_RESULT, 3, FakemonInfo
+    goto_if_eq VAR_RESULT, 4, GimmicksInfo
+    goto_if_eq VAR_RESULT, 5, Difficulty
+    goto_if_eq VAR_RESULT, 6, ExitDialogue
+    release
+    end
+
+WhereAmI::
+    msgbox Text_WhereAmI, MSGBOX_DEFAULT
+    goto Im_Pheobos_Let_me_HelpScript
+
+RegionGeography::
+    msgbox Text_RegionGeography, MSGBOX_DEFAULT
+    goto Im_Pheobos_Let_me_HelpScript
+
+PokemonInfo::
+    msgbox Text_PokemonInfo, MSGBOX_DEFAULT
+    goto Im_Pheobos_Let_me_HelpScript
+
+FakemonInfo::
+    msgbox Text_FakemonInfo, MSGBOX_DEFAULT
+    goto Im_Pheobos_Let_me_HelpScript
+
+GimmicksInfo::
+    msgbox Text_GimmicksInfo, MSGBOX_DEFAULT
+    goto Im_Pheobos_Let_me_HelpScript
+
+Difficulty::
+    msgbox Text_Difficulty, MSGBOX_DEFAULT
+    goto Im_Pheobos_Let_me_HelpScript
+
+ExitDialogue::
+    msgbox Text_ExitDialogue, MSGBOX_DEFAULT
+    release
+    end
+
+Text_TopicIntro::
+    .string "Hi there, I'm Pheobos, aka Jay!\n"
+    .string "I'm the creator of this ROM hack.\p"
+    .string "Would you like me to explain something?$"
+
+Text_WhereAmI::
+    .string "You're on an island in the Hellina region.\n"
+    .string "This island serves as the starting area of the game.\p"
+    .string "The region is fairly large, and routes are\n"
+    .string "a bit different here.\p"
+    .string "Every route connects to multiple other routes,\n"
+    .string "allowing various paths of travel.\p"
+    .string "I encourage you to explore thoroughly.\n"
+    .string "You might find secrets and rewards!$"
+
+Text_RegionGeography::
+    .string "The Hellina region is based on Greece!\n"
+    .string "I've always been fascinated by Greek mythology.\p"
+    .string "This project helped me learn more about it,\n"
+    .string "so expect references to myths, flora, and fauna!$"
+
+Text_PokemonInfo::
+    .string "You'll find Pokémon from Gen 1 through Gen 9 here.\p"
+    .string "I tried to include as many as I could, so\n"
+    .string "if your favorite isn't in, I apologize!\p"
+    .string "All official starter Pokémon also have new\n"
+    .string "or extra abilities for variety.$"
+
+Text_FakemonInfo::
+    .string "This ROM hack started as a way to include\n"
+    .string "my own Fakemon designs in a game.\p"
+    .string "It became a big passion project from there.\p"
+    .string "You'll find my custom regional forms, evolutions,\n"
+    .string "and completely new species throughout the game!\p"
+    .string "Watch for NPCs who may hint at where to find them.$"
+
+Text_GimmicksInfo::
+    .string "This ROM hack supports most official gimmicks,\n"
+    .string "though I don't plan to invent a brand-new one.\p"
+    .string "I might include some extra Mega Evolutions\n"
+    .string "as the project develops!$"
+
+Text_Difficulty::
+    .string "This isn't meant to be a hardcore difficulty hack,\n"
+    .string "but I did tweak the challenge a bit.\p"
+    .string "With all the extra routes and areas,\n"
+    .string "you'll have lots of options for team building --\n"
+    .string "whether casually or for Nuzlockes.$"
+
+Text_ExitDialogue::
+    .string "Alright, feel free to ask if you want to\n"
+    .string "know more later!$"
+

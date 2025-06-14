@@ -207,3 +207,21 @@ const u16 gMetatileAttributes_MysteryEventsHouse[] = INCBIN_U16("data/tilesets/s
 
 const u16 gMetatiles_UnionRoom[] = INCBIN_U16("data/tilesets/secondary/union_room/metatiles.bin");
 const u16 gMetatileAttributes_UnionRoom[] = INCBIN_U16("data/tilesets/secondary/union_room/metatile_attributes.bin");
+
+const u16 gMetatiles_Creta_Primary_Tiles[] = INCBIN_U16("data/tilesets/primary/creta_primary_tiles/metatiles.bin");
+const u16 gMetatileAttributes_Creta_Primary_Tiles[] = INCBIN_U16("data/tilesets/primary/creta_primary_tiles/metatile_attributes.bin");
+
+const u16 gMetatiles_TEST_CUSTOM_STARTINGTOWN[] = INCBIN_U16("data/tilesets/secondary/test_custom_startingtown/metatiles.bin");
+const u16 gMetatileAttributes_TEST_CUSTOM_STARTINGTOWN[] = INCBIN_U16("data/tilesets/secondary/test_custom_startingtown/metatile_attributes.bin");
+
+const u16 gMetatiles_Edited_Tileset_Test[] = INCBIN_U16("data/tilesets/primary/edited_tileset_test/metatiles.bin");
+const u16 gMetatileAttributes_Edited_Tileset_Test[] = INCBIN_U16("data/tilesets/primary/edited_tileset_test/metatile_attributes.bin");
+
+const u16 gMetatiles_EDITED_PETALBURG_TEST[] = INCBIN_U16("data/tilesets/secondary/edited_petalburg_test/metatiles.bin");
+const u16 gMetatileAttributes_EDITED_PETALBURG_TEST[] = INCBIN_U16("data/tilesets/secondary/edited_petalburg_test/metatile_attributes.bin");
+
+const u16 gMetatiles_PorytilesPracticeTileset[] = INCBIN_U16("data/tilesets/primary/porytiles_practice_tileset/metatiles.bin");
+const u16 gMetatileAttributes_PorytilesPracticeTileset[] = INCBIN_U16("data/tilesets/primary/porytiles_practice_tileset/metatile_attributes.bin");
+
+const u16 gMetatiles_NEW_Creta_Tileset[] = INCBIN_U16("data/tilesets/primary/new_creta_tileset/metatiles.bin");
+const u16 gMetatileAttributes_NEW_Creta_Tileset[] = INCBIN_U16("data/tilesets/primary/new_creta_tileset/metatile_attributes.bin");
